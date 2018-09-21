@@ -3,6 +3,8 @@
 const express = require('express');
 // ... und für die Datenbank
 const db = require('../src/database');
+const User = require('../src/User');
+
 
 // Neue Router-Instanz
 const router = express.Router();
@@ -76,6 +78,40 @@ function deleteSingleUser(request, response) {
     // Alternativ könnten wir auch das gelöschte Objekt selbst retournieren
     response.json(true);
 }
+
+
+router.post("/", createUser);
+
+function createUser(request, response) {
+    let name = request.body.name;
+    let legs = request.body.legs;
+
+    let newuser = new User();
+    newuser.name = name;
+    newuser.legs = legs;
+
+    let userCollection = db.getCollection('users');
+    let dbuser = userCollection.insert(newuser);
+
+    response.json(dbuser);
+}
+
+router.put("/:userId", updateUser);
+
+function updateUser(request, response) {
+    let newdata = request.body;
+
+    let userCollection = db.getCollection('users');
+    let user = userCollection.get(request.params.userId);
+
+    user.name = newdata.name;
+    user.legs = newdata.legs;
+
+    userCollection.update(user);
+
+    response.json(user);
+}
+
 
 
 // Notwendig: Unsere Datei stellt ein Modul dar.
