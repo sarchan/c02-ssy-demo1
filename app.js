@@ -8,6 +8,7 @@ const index = require('./routes/index');
 const noch_was = require('./routes/noch-was');
 const calc = require('./routes/calc');
 const users = require('./routes/users');
+const sumlegs = require('./routes/sumLegs');
 
 // Generic application setup
 app.use(logger('dev'));
@@ -20,6 +21,7 @@ app.use('/', index);
 app.use('/noch', noch_was);
 app.use('/calc', calc);
 app.use('/users', users);
+app.use('/sum-legs', sumlegs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
