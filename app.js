@@ -11,10 +11,12 @@ app.use(express.urlencoded({extended: false}));
 const index = require('./routes/index');
 const noch = require('./routes/noch');
 const calcRouter = require('./routes/calc');
+const benutzerinnen = require('./routes/user');
 
 // Routes
 app.use('/', index);
 app.use('/noch', noch);
 app.use('/calc', calcRouter);
+app.use('/user', benutzerinnen);
 
 module.exports = app;
