@@ -4,7 +4,7 @@ const router = express.Router();
 router.get('/', hello);
 
 function hello(req, res) {
-  res.send('NodeJS + Express läuft!');
+  res.send('Mein erstes Service!');
 }
 
 module.exports = router;
