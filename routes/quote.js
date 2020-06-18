@@ -28,4 +28,20 @@ async function getQuoteByName(req, res) {
     }
 }
 
+// http://localhost:3001/quote/all
+// {
+//   "users": [
+//               { "name": "Sleipnir", "risk_premium": 1800 },
+//               { "name": "Hel", "risk_premium": 1200 },
+//               ...
+//            ]
+//   "valid_for": "14 days"
+// }
+
+// http://localhost:3001/quote/pairs/Hel/Sleipnir
+// {
+//     "risk_premium": 2400,  <-- Summe der beiden Versicherungsprämien mit 20% Rabatt
+//     "valid_for": "14 days",
+// }
+
 module.exports = router;
