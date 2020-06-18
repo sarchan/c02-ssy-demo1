@@ -6,6 +6,8 @@ router.get('/sub', minus);
 router.get('/mul', multiply);
 router.get('/div', divide);
 
+// http://localhost:3000/calc/sub?number1=100&number2=18
+
 function plus(req, res) {
     const zahl1 = parseFloat(req.query.number1);
     const zahl2 = parseFloat(req.query.number2);

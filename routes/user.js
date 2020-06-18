@@ -29,7 +29,7 @@ router.get('/:id', showSingleUser);
 function showSingleUser(req, res) {
     const userId = parseInt(req.params.id);
     const userCollection = db.getCollection('users');
-    const user = userCollection.get(userId);
+    const user = userCollection.get(userId); // primary key
     if (user === null) {
         sendError(res);
     } else {
@@ -41,6 +41,29 @@ function showSingleUser(req, res) {
 function sendError(response) {
     response.status(404);
     response.send("BenutzerIn existiert nicht");
+}
+
+
+// http://localhost:3000/user/by_name/Sleipnir
+router.get('/by_name/:name', getUserByName);
+
+function getUserByName(req, res) {
+    const userCollection = db.getCollection('users');
+    const nameParam = req.params.name;
+    const user = userCollection.findOne({ name: nameParam });
+    if (user === null) {
+        sendError(res);
+    } else {
+        res.json(user);
+    }
+
+    // const obj = new StdClass();
+    // const obj = {};
+    // obj.vorname = "Linus";
+    // obj.alter = 34;
+    // const obj2 = { vorname: "Sandra", alter: 44 };
+    // obj2.vorname // "Sandra"
+    // obj2.alter // 44
 }
 
 
