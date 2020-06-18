@@ -14,7 +14,8 @@ function listAllUsers(req, res) {
     for (let user of users) {
         result.push({
             primaryKey: user.$loki,
-            name: user.name
+            name: user.name,
+            legs: user.legs
         });
     }
 
